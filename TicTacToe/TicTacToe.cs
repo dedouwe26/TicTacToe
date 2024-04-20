@@ -19,8 +19,6 @@ public sealed class TicTacToe {
     public bool IsOver { get; private set; }
     private char previousModule = 'x';
     public TicTacToe(Module module1, Module module2) {
-        module1.Game = this;
-        module2.Game = this;
         this.module1 = module1;
         this.module2 = module2;
         
@@ -33,13 +31,15 @@ public sealed class TicTacToe {
 
         OnEvent?.Invoke("start", []);
 
+        
+
         while (!IsOver) {
             Module current = WhoIsNext();
             OnEvent?.Invoke("turn", new(){
                 ["name"] = current.Name,
                 ["id"] = GetID(current)
             });
-            byte chosenTile = current.Choose();
+            byte chosenTile = current.Choose(this);
             if (!IsMoveValid(chosenTile)) {
                 continue;
             }
