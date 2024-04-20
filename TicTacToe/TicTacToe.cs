@@ -116,7 +116,7 @@ public sealed class TicTacToe {
         return ID == 'o' ? 'x' : 'o';
     }
     public char? CheckForVictory(Line line) {
-        return ((grid[line.start] == grid[line.middle]) && (grid[line.middle] == grid[line.end]) && (grid[line.end] == grid[line.start])) ? GetOwnerID(grid[line.start]) : null;
+        return ((grid[line.start] == grid[line.middle]) && (grid[line.middle] == grid[line.end]) && (grid[line.end] == grid[line.start]) && (grid[line.start] != TileState.Empty)) ? GetOwnerID(grid[line.start]) : null;
     }
     public bool IsMoveValid(byte tile) {
         return grid[tile]==TileState.Empty;

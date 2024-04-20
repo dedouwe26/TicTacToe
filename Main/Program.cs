@@ -77,22 +77,23 @@ public static class Program {
                     Terminal.Set(CreateField(game.GetGrid()), FieldOffset);
                     break;
                 case "turn":
-                    Terminal.Set((string)args["name"], (char)args["id"]=='o' ? Name1Offset : Name2Offset, new Style{Bold=true});
+                    Terminal.Set((string)args["name"], (char)args["id"]=='o' ? Name1Offset : Name2Offset, new Style(){Bold=true});
                     break;
                 case "tilechange":
                     Terminal.Set(CreateField(game.GetGrid()), FieldOffset);
                     break;
                 case "win":
-                    Terminal.Set((string)args["name"], (char)args["id"]=='o' ? Name1Offset : Name2Offset, new Style{Bold = true, foregroundColor = Color.Green});
+                    Terminal.Set((string)args["name"], (char)args["id"]=='o' ? Name1Offset : Name2Offset, new Style{Bold=true, foregroundColor = Color.Green});
                     break;
                 case "lose":
-                    Terminal.Set((string)args["name"], (char)args["id"]=='o' ? Name1Offset : Name2Offset, new Style{Bold = true, foregroundColor = Color.Red});
+                    Terminal.Set((string)args["name"], (char)args["id"]=='o' ? Name1Offset : Name2Offset, new Style{Bold=true, foregroundColor = Color.Red});
                     break;
                 case "draw":
-                    Terminal.Set(module1.Name, Name1Offset, new Style{Bold=false, foregroundColor = Color.Orange});
-                    Terminal.Set(module2.Name, Name2Offset, new Style{Bold=false, foregroundColor = Color.Orange});
+                    Terminal.Set(module1.Name, Name1Offset, new Style{Bold=true, foregroundColor = Color.Orange});
+                    Terminal.Set(module2.Name, Name2Offset, new Style{Bold=true, foregroundColor = Color.Orange});
                     break;
                 case "stop":
+                    
                     Terminal.Goto(EndOffset);
                     break;
             }

@@ -3,7 +3,7 @@ namespace TTT.Modules;
 public class SmartBotModule : Module {
     public override string Name => "Smart bot";
 
-    public override byte Choose() {
+    protected override byte Choose() {
         Grid<byte> priorityGrid = GetPriority();
         (byte index, byte value) highestPriority = (9, byte.MaxValue);
         for (byte i = 0; i < priorityGrid.Size; i++) {
@@ -20,7 +20,9 @@ public class SmartBotModule : Module {
         Grid<byte> possibleWinsGrid = GetPossibleWins();
         byte highest = possibleWinsGrid.Max();
         for (byte i = 0; i < possibleWinsGrid.Size; i++) {
-            priorityGrid[i] = (byte)(highest - possibleWinsGrid[i] + 1);
+            if (Grid[i]==TileState.Empty) {
+                priorityGrid[i] = (byte)(highest - possibleWinsGrid[i] + 1);
+            }
         }
 
         for (byte i = 0; i < Grid.Size; i++) {

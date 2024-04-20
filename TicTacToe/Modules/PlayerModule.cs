@@ -1,5 +1,3 @@
-using OxDEDTerm;
-
 namespace TTT.Modules;
 
 public class PlayerModule : Module {
@@ -7,7 +5,7 @@ public class PlayerModule : Module {
 
     public event Func<PlayerModule, byte>? OnChoose;
 
-    public override byte Choose() {
+    protected override byte Choose() {
         return OnChoose!.Invoke(this);
     }
 }
